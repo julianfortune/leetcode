@@ -51,7 +51,7 @@ secondToLastStair = cheapestPathTo[len(cost) - 2]
 return min(lastStair, secondToLastStair)
 ```
 
-## Complexity
+#### Complexity
 ```
 O(n)
 ```
