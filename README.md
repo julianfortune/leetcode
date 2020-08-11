@@ -101,3 +101,7 @@ return waysToCurrent
 ```
 O(n)
 ```
+
+#### Notes
+
+This is just the fibonacci sequence!
