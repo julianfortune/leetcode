@@ -29,26 +29,78 @@ Explanation: Cheapest is start on cost[0], and only step on 1s, skipping cost[3]
 ### Solution
 
 ``` python3
-class Solution:
-  def minCostClimbingStairs(self, cost: List[int]) -> int:
-    cheapestPathTo = {} # Dictionary mapping `stair index` to cost to get there
+cheapestPathTo = {} # Dictionary mapping `stair index` to cost to get there
 
-    # Uses cached values
-    def costToStep(index):
-      if index < 0:
-        return 0
-      else:
-        return cheapestPathTo[index]
+# Uses cached values
+def costToStep(index):
+  if index < 0:
+    return 0
+  else:
+    return cheapestPathTo[index]
 
-    # Work from the beginning of the stairs to the top
-    for index, currentCost in enumerate(cost):
-      oneStepCost = costToStep(index - 1)
-      twoStepCost = costToStep(index - 2)
+# Work from the beginning of the stairs to the top
+for index, currentCost in enumerate(cost):
+  oneStepCost = costToStep(index - 1)
+  twoStepCost = costToStep(index - 2)
 
-      cheapestPathTo[index] = min(oneStepCost, twoStepCost) + currentCost
+  cheapestPathTo[index] = min(oneStepCost, twoStepCost) + currentCost
 
-    lastStair = cheapestPathTo[len(cost) - 1]
-    secondToLastStair = cheapestPathTo[len(cost) - 2]
+lastStair = cheapestPathTo[len(cost) - 1]
+secondToLastStair = cheapestPathTo[len(cost) - 2]
 
-    return min(lastStair, secondToLastStair)
+return min(lastStair, secondToLastStair)
+```
+
+### Complexity
+
+```
+O(n)
+```
+
+## 70. Climbing Stairs `Easy`
+
+You are climbing a stair case. It takes n steps to reach to the top.
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+Example 1:
+
+```
+Input: 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+```
+
+Example 2:
+```
+Input: 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+```
+
+Constraints:
+
+1 <= n <= 45
+
+### Solution
+
+``` python3
+waysToCurrent = 1
+waysToPrior = 0
+
+for _ in range(n):
+  waysToCurrent, waysToPrior = waysToCurrent + waysToPrior, waysToCurrent
+
+return waysToCurrent
+```
+
+### Complexity
+
+```
+O(n)
 ```
