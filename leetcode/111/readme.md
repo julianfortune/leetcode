@@ -19,6 +19,15 @@ Given binary tree `[3,9,20,null,null,15,7]`,
 return its minimum depth = 2.
 ```
 
+#### `TreeNode` definition:
+```
+class TreeNode:
+  def __init__(self, val=0, left=None, right=None):
+    self.val = val
+    self.left = left
+    self.right = right
+```
+
 ### Solution
 
 Uses `collection.deque` ([docs](https://docs.python.org/3/library/collections.html#collections.deque)).
